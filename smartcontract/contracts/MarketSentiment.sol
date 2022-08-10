@@ -2,6 +2,10 @@
 
 pragma solidity ^0.8.9;
 
+import "hardhat/console.sol";
+
+// adds console.log to functions only I guess...
+
 contract MarketSentiment {
     address public owner;
     string[] public tickerArray;
@@ -26,11 +30,16 @@ contract MarketSentiment {
         ticker storage newTicker = Tickers[_ticker];
         newTicker.exists = true;
         tickerArray.push(_ticker);
+
+        console.log("Unlock time is %");
     }
 
     function vote(string memory _ticker, bool _vote) public {
         require(!Tickers[_ticker].exists, "Can't vote on this coin");
-        require(!Tickers[_ticker].Voters[msg.sender], "You have already voted on this coin");
+        require(
+            !Tickers[_ticker].Voters[msg.sender],
+            "You have already voted on this coin"
+        );
 
         ticker storage t = Tickers[_ticker];
         t.Voters[msg.sender] = true;
@@ -52,5 +61,9 @@ contract MarketSentiment {
         require(Tickers[_ticker].exists, "No suck ticker exists");
         ticker storage t = Tickers[_ticker];
         return (t.up, t.down);
+    }
+
+    function getArr(uint256 num) public view returns(string memory) {
+        return tickerArray[num];
     }
 }
