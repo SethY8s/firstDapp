@@ -7,11 +7,11 @@ module.exports = {
   solidity: '0.8.9',
   newworks: {
     goerli: {
-      url: `https://eth-goerli.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
-      accounts: [GOERLI_PRIVATE_KEY],
+      url: process.env.ALCHEMY_KEY,
+      accounts: [process.env.GOERLI_PRIVATE_KEY],
     },
   },
   etherscan: {
-    apiKey: process.env,
+    apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };
