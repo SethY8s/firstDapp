@@ -63,6 +63,7 @@ contract MarketSentiment {
         return (t.up, t.down);
     }
 
+// this function doesnt use any gas since it is a 'view' function
     function getArr(uint256 num) public view returns(string memory) {
         console.log('test log');
         return tickerArray[num];
