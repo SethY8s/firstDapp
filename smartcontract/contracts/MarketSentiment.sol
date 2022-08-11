@@ -64,6 +64,7 @@ contract MarketSentiment {
     }
 
     function getArr(uint256 num) public view returns(string memory) {
+        console.log('test log');
         return tickerArray[num];
     }
 }
