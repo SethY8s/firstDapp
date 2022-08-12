@@ -1,11 +1,14 @@
 require('@nomicfoundation/hardhat-toolbox');
 require('@nomiclabs/hardhat-etherscan');
+
 const dotenv = require('dotenv');
+dotenv.config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: '0.8.9',
-  newworks: {
+
+  networks: {
     goerli: {
       url: process.env.ALCHEMY_KEY,
       accounts: [process.env.GOERLI_PRIVATE_KEY],
