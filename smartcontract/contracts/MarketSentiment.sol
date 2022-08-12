@@ -35,7 +35,7 @@ contract MarketSentiment {
     }
 
     function vote(string memory _ticker, bool _vote) public {
-        require(!Tickers[_ticker].exists, "Can't vote on this coin");
+        require(Tickers[_ticker].exists, "Can't vote on this coin");
         require(
             !Tickers[_ticker].Voters[msg.sender],
             "You have already voted on this coin"
