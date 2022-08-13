@@ -2,7 +2,7 @@ import React from 'react';
 // import Connectwallet from '../connect/Connectwallet';
 import Web3ModalButton from '../connect/Web3ModalButton';
 import './navbar.css';
-import logi from './logi.png'
+// import logi from './logi.png'
 
 export default function Navbar() {
   return (
