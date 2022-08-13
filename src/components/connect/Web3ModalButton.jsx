@@ -36,7 +36,7 @@ export default function Web3ModalButton() {
   return (
     <div>
       <button className="button-63" onClick={connectWallet}>
-        Button2
+        Connect
       </button>
     </div>
   );
