@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Web3Modal from 'web3modal';
 import { ethers } from 'ethers';
 import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk';
+import './connect.css'
 
 const providerOptions = {
   coinbasewallet: {
     package: CoinbaseWalletSDK,
     options: {
       appName: 'Web 3 Modal Demo',
-    //   infuraId: process.env.REACT_APP_INFURA_KEY,
+      //   infuraId: process.env.REACT_APP_INFURA_KEY,
     },
   },
 };
 
 export default function Web3ModalButton() {
-    const[web3Provider, setWeb3Provider] = useState(null);
+  const [web3Provider, setWeb3Provider] = useState(null);
 
   const connectWallet = async () => {
     try {
@@ -34,7 +35,9 @@ export default function Web3ModalButton() {
 
   return (
     <div>
-      <button onClick={connectWallet}>Button2</button>
+      <button className="button-63" onClick={connectWallet}>
+        Button2
+      </button>
     </div>
   );
 }
