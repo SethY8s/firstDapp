@@ -1,7 +1,7 @@
 import React from 'react';
-import { ethers } from 'ethers';
+// import { ethers } from 'ethers';
 
-export default function Connect() {
+export default function Connectwallet() {
   const conncetWallet = async () => {
     try {
       if (!window.ethereum) {
@@ -16,5 +16,9 @@ export default function Connect() {
     }
   };
 
-  return <button onClick={() => conncetWallet()}>Connect to MetaMask</button>;
+  return (
+    <>
+      <button onClick={() => conncetWallet()}>Connect to MetaMask</button>
+    </>
+  );
 }

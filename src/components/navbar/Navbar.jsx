@@ -1,10 +1,12 @@
 import React from 'react';
-import Connect from '../connect/Connect';
+import Connectwallet from '../connect/Connectwallet';
+import Web3ModalButton from '../connect/Web3ModalButton';
 
 export default function Navbar() {
   return (
     <div>
-      <Connect />
+      <Connectwallet />
+      <Web3ModalButton />
     </div>
   );
 }
