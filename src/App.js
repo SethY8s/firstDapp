@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <Navbar />
       <CryptoHome />
+      <div>somethign</div>
     </div>
   );
 }
