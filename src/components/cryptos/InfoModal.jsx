@@ -12,7 +12,7 @@ const customStyles = {
   },
 };
 
-export default function InfoModal() {
+export default function InfoModal({coinProps}) {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -41,7 +41,7 @@ export default function InfoModal() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{coinProps.name}</h2>
         <button onClick={closeModal}>close</button>
         <div>I am a modal</div>
         <form>
