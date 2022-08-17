@@ -27,6 +27,8 @@ export default function Web3ModalButton() {
       const web3ModalProvider = new ethers.providers.Web3Provider(
         web3ModalInstance
       );
+
+      setWeb3Provider(web3ModalProvider);
       console.log(web3ModalProvider);
     } catch (error) {
       console.error(error);
@@ -34,8 +36,14 @@ export default function Web3ModalButton() {
   };
 
   return (
-    <button className="button-63" onClick={connectWallet}>
-      Connect
-    </button>
+    <>
+      {web3Provider ? (
+        <h2 style={{color: 'white'}}>Connected</h2>
+      ) : (
+        <button className="button-63" onClick={connectWallet}>
+          Connect
+        </button>
+      )}
+    </>
   );
 }
