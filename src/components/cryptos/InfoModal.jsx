@@ -7,8 +7,10 @@ const customStyles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    // marginRight: '-50%',
+    marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+    color:'white'
   },
 };
 
@@ -42,6 +44,7 @@ export default function InfoModal({coinProps, coinPrice}) {
         contentLabel="Example Modal"
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{coinProps.name}</h2>
+        <h4>{coinPrice}</h4>
         <button onClick={closeModal}>close</button>
         <div>I am a modal</div>
         <form>

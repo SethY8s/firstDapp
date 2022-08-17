@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import InfoModal from './InfoModal';
 import './crypto.css';
 import Modal from 'react-modal';
 import axios from 'axios';
 
 export default function Crypto({ props }) {
-  
+  const effectRan = useRef(false);
 
   const [coinData, setCoinData] = useState('');
 
   useEffect(() => {
-    const fetchCoinData = async () => {
-      try {
-        const coin = await axios(
-          `https://api.coingecko.com/api/v3/coins/${props.name.toLowerCase()}`
-        );
-        // console.log(coin.data.market_data.current_price.usd);
-        setCoinData(coin.data.market_data.current_price.usd)
-      } catch (error) {
-        console.log(error);
+    if (effectRan.current === false) {
+      const fetchCoinData = async () => {
+        try {
+          const coin = await axios(
+            `https://api.coingecko.com/api/v3/coins/${props.name.toLowerCase()}`
+          );
+          console.log(coin.data.market_data.current_price.usd);
+          setCoinData(coin.data.market_data.current_price.usd);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchCoinData();
+
+      return () => {
+        effectRan.current = true;
       }
-    };
-    fetchCoinData();
+    }
   }, []);
 
   return (
