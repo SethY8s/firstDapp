@@ -12,7 +12,7 @@ const customStyles = {
   },
 };
 
-export default function InfoModal({coinProps}) {
+export default function InfoModal({coinProps, coinPrice}) {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -47,7 +47,7 @@ export default function InfoModal({coinProps}) {
         <form>
           <input />
           <button>tab navigation</button>
-          <button>stays</button>
+          <button>{coinPrice}</button>
           <button>inside</button>
           <button>the modal</button>
         </form>

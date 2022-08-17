@@ -5,16 +5,21 @@ import Modal from 'react-modal';
 import axios from 'axios';
 
 export default function Crypto({ props }) {
-  const [data, setData] = useState();
+  
 
   const [coinData, setCoinData] = useState('');
 
   useEffect(() => {
     const fetchCoinData = async () => {
-      const coin = await axios(
-        `https://api.coingecko.com/api/v3/coins/${props.name.toLowerCase()}`
-      );
-      console.log(coin.data.market_data.current_price.usd);
+      try {
+        const coin = await axios(
+          `https://api.coingecko.com/api/v3/coins/${props.name.toLowerCase()}`
+        );
+        // console.log(coin.data.market_data.current_price.usd);
+        setCoinData(coin.data.market_data.current_price.usd)
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchCoinData();
   }, []);
@@ -30,7 +35,7 @@ export default function Crypto({ props }) {
         <button className="button-62"> Up</button>
       </span>
       <div className="bar"></div>
-      <InfoModal coinProps={props} />
+      <InfoModal coinProps={props} coinPrice={coinData} />
     </div>
   );
 }
