@@ -38,7 +38,7 @@ export default function Web3ModalButton() {
   return (
     <>
       {web3Provider ? (
-        <h2 style={{color: 'white'}}>Connected</h2>
+        <h2 style={{ color: 'white' }}>Connected</h2>
       ) : (
         <button className="button-63" onClick={connectWallet}>
           Connect

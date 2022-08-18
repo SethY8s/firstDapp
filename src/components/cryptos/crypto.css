@@ -19,8 +19,6 @@
   align-items: center;
 }
 
-
-
 .Crypto_Image {
   height: 200px;
   width: 200px;
@@ -62,6 +60,22 @@
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
     -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
     0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.button-62-up {
+  background: linear-gradient(to bottom right, #159f48, #7cc09c);
+}
+
+.button-62-up:not([disabled]):focus {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(47, 180, 98, 0.5),
+    0.125rem 0.125rem 1rem rgba(139, 240, 186, 0.5);
+}
+
+.button-62-up:not([disabled]):hover {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(47, 180, 98, 0.5),
+    0.125rem 0.125rem 1rem rgba(139, 240, 186, 0.5);
 }
 
 .button-85 {

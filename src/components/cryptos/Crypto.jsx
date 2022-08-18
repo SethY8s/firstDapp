@@ -38,7 +38,7 @@ export default function Crypto({ props }) {
       <div></div>
       <span>
         <button className="button-62">Down</button>
-        <button className="button-62"> Up</button>
+        <button className="button-62 button-62-up"> Up</button>
       </span>
       <div className="bar"></div>
       <InfoModal coinProps={props} coinPrice={coinData} />
