@@ -3,29 +3,30 @@ import InfoModal from './InfoModal';
 import './crypto.css';
 import Modal from 'react-modal';
 import axios from 'axios';
-import { useMoralis } from 'react-moralis';
+import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
+import vote from './voteFunction';
 
 export default function Crypto({ props }) {
   const effectRan = useRef(false);
 
   const [coinData, setCoinData] = useState('');
   const [ratio, setRatio] = useState();
-  const { Moralis, isInitialized } = useMoralis();
+  const { Moralis, isInitialized, isAuthenticated } = useMoralis();
+  const contractProcessor = useWeb3ExecuteFunction();
 
   useEffect(() => {
     if (isInitialized) {
       getVotes(props.tag, setRatio);
 
-      const createLiveQuery = async() => {
+      const createLiveQuery = async () => {
         let query = new Moralis.Query('Voters');
         let subscription = await query.subscribe();
         subscription.on('update', (object) => {
-          if(object.attributes.ticker === props.tag){
+          if (object.attributes.ticker === props.tag) {
             getVotes(props.tag, setRatio);
           }
-
-        })
-      }
+        });
+      };
       createLiveQuery();
     }
   }, [isInitialized]);
@@ -64,6 +65,47 @@ export default function Crypto({ props }) {
     console.log(props.name, up, down);
   };
 
+  // const vote = async (voteType) => {
+  //   const options = {
+  //     contractAddress: '0x9B978C23b1198050BCa1b98bE6688986AC16038d',
+  //     functionName: 'vote',
+  //     abi: [
+  //       {
+  //         inputs: [
+  //           {
+  //             internalType: 'string',
+  //             name: '_ticker',
+  //             type: 'string',
+  //           },
+  //           {
+  //             internalType: 'bool',
+  //             name: '_vote',
+  //             type: 'bool',
+  //           },
+  //         ],
+  //         name: 'vote',
+  //         outputs: [],
+  //         stateMutability: 'nonpayable',
+  //         type: 'function',
+  //       },
+  //     ],
+  //     params: {
+  //       _ticker: props.tag,
+  //       _vote: voteType,
+  //     },
+  //   };
+
+  //   await contractProcessor.fetch({
+  //     params: options,
+  //     onSuccess: () => {
+  //       console.log('vote succesful');
+  //     },
+  //     onError: (error) => {
+  //       alert(error);
+  //     },
+  //   });
+  // };
+
   return (
     <div className="crypto_crypto_container">
       {/* <div className='Crypto_Image'></div> */}
@@ -71,8 +113,23 @@ export default function Crypto({ props }) {
       <h4>{props.name}</h4>
       <div></div>
       <span>
-        <button className="button-62">Down</button>
-        <button className="button-62 button-62-up"> Up</button>
+        <button
+          onClick={() => {
+            vote(false);
+          }}
+          className="button-62"
+        >
+          Down
+        </button>
+        <button
+          onClick={() => {
+            vote(true);
+          }}
+          className="button-62 button-62-up"
+        >
+          {' '}
+          Up
+        </button>
       </span>
       <div className="bar">
         {ratio > 50 ? (
