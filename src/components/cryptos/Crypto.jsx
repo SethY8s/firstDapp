@@ -15,6 +15,18 @@ export default function Crypto({ props }) {
   useEffect(() => {
     if (isInitialized) {
       getVotes(props.tag, setRatio);
+
+      const createLiveQuery = async() => {
+        let query = new Moralis.Query('Voters');
+        let subscription = await query.subscribe();
+        subscription.on('update', (object) => {
+          if(object.attributes.ticker === props.tag){
+            getVotes(props.tag, setRatio);
+          }
+
+        })
+      }
+      createLiveQuery();
     }
   }, [isInitialized]);
 
@@ -63,7 +75,14 @@ export default function Crypto({ props }) {
         <button className="button-62 button-62-up"> Up</button>
       </span>
       <div className="bar">
-        <div style={{ width: `${ratio}%` }} className="inner-bar"></div>
+        {ratio > 50 ? (
+          <div style={{ width: `${ratio}%` }} className="inner-bar"></div>
+        ) : (
+          <div
+            style={{ width: `${ratio}%`, backgroundColor: 'red' }}
+            className="inner-bar"
+          ></div>
+        )}
       </div>
       <InfoModal coinProps={props} coinPrice={coinData} />
     </div>
