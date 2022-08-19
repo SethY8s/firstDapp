@@ -1,0 +1,18 @@
+.donate-container{
+ width: 100%;
+ display: flex;
+ justify-content: center;
+}
+
+.donate{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: black;
+    align-items: center;
+    color: white;
+}
+
+.donate input {
+    width: 90%;
+}
