@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import InfoModal from './InfoModal';
 import './crypto.css';
-import Modal from 'react-modal';
 import axios from 'axios';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 import vote from './voteFunction';

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Web3Modal from 'web3modal';
 import { ethers } from 'ethers';
 import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk';
 import './connect.css';
+
+import authContext from '../../context/authContext';
 
 const providerOptions = {
   coinbasewallet: {
@@ -15,6 +17,8 @@ const providerOptions = {
 };
 
 export default function Web3ModalButton() {
+  const { hello } = useContext(authContext)
+  
   const [web3Provider, setWeb3Provider] = useState(null);
 
   const connectWallet = async () => {
@@ -43,6 +47,7 @@ export default function Web3ModalButton() {
         <button className="button-63" onClick={connectWallet}>
           Connect
         </button>
+        
       )}
     </>
   );
